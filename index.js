@@ -3,22 +3,22 @@ function render() {
 
   headerPage.render(productsStore.length);
   productsPage.render();
-
-
 }
 
-let CATALOG = [];
+spinnerPage.render();
 
+let CATALOG = [];
 
 // https://api.jsonserve.com/P84DC8
 // server/catalog.json
 
-fetch('server/catalog.json')
-    .then(res => res.json())
-    .then(body =>{
-        CATALOG = body;
-        render();
-    })
-    .catch(error => {
-        console.log(error);
-    });
+fetch("server/catalog.json")
+  .then((res) => res.json())
+  .then((body) => {
+    CATALOG = body;
+    spinnerPage.handleClear();
+    render();
+  })
+  .catch((error) => {
+    console.log(error);
+  });
